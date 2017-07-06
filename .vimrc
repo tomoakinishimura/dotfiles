@@ -1,3 +1,61 @@
+"------------------
+"start neobundle settings
+"------------------
+
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+
+" インストールしたいNeoBundleプラグインを下記に記載
+NeoBundle 'Yggdroot/indentLine'
+NeoBundleFetch 'Shugo/neobundle.vim'
+NeoBundle 'Shougo/unite.vim'
+" Unite.vimで最近使ったファイルを表示できるようにする
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimproc'
+
+call neobundle#end()
+
+filetype plugin indent on
+
+" 新しいPluginがあればインストールチェック
+NeoBundleCheck
+
+
+" http://blog.remora.cx/2010/12/vim-ref-with-unite.html
+" """"""""""""""""""""""""""""""
+" " Unit.vimの設定
+" """"""""""""""""""""""""""""""
+" " 入力モードで開始する
+" let g:unite_enable_start_insert=1
+" " バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+" " ファイル一覧
+" noremap <C-N> :Unite -buffer-name=file file<CR>
+" " 最近使ったファイルの一覧
+ noremap <C-Z> :Unite file_mru<CR>
+" " sourcesを「今開いているファイルのディレクトリ」とする
+" noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+" " ウィンドウを分割して開く
+" au FileType unite nnoremap <silent> <buffer> <expr> <C-J>
+" unite#do_action('split')
+" au FileType unite inoremap <silent> <buffer> <expr> <C-J>
+" unite#do_action('split')
+" " ウィンドウを縦に分割して開く
+" au FileType unite nnoremap <silent> <buffer> <expr> <C-K>
+" unite#do_action('vsplit')
+" au FileType unite inoremap <silent> <buffer> <expr> <C-K>
+" unite#do_action('vsplit')
+" " ESCキーを2回押すと終了する
+" au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+" au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+" """"""""""""""""""""""""""""
+
+" VimFilerをデフォルトのファイラにする
+let g:vimfiler_as_default_explorer=1
+
 " カラースキーマ
 syntax on
 colorscheme elflord
@@ -16,17 +74,10 @@ set laststatus=2   " ステータス行を常に表示
 set cmdheight=2    " メッセージ表示欄を2行確保
 set showmatch      " 対応する括弧を強調表示
 set helpheight=999 " ヘルプを画面いっぱいに開く
+set cursorline " カーソルラインをハイライト
 "set list           " 不可視文字を表示
 " 不可視文字の表示記号指定
 "set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
-
-" カーソル移動関連の設定
-
-set backspace=indent,eol,start " Backspaceキーの影響範囲に制限を設けない
-set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
-set scrolloff=8                " 上下8行の視界を確保
-set sidescrolloff=16           " 左右スクロール時の視界を確保
-set sidescroll=1               " 左右スクロールは一文字づつ行う
 
 " ファイル処理関連の設定
 
@@ -77,3 +128,4 @@ set history=10000
 "ビープ音すべてを無効にする
 set visualbell t_vb=
 set noerrorbells "エラーメッセージの表示時にビープを鳴らさない
+
