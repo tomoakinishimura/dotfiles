@@ -35,7 +35,7 @@ noremap <C-P> :Unite buffer<CR>
 " " ファイル一覧
 " noremap <C-N> :Unite -buffer-name=file file<CR>
 " " 最近使ったファイルの一覧
- noremap <C-Z> :Unite file_mru<CR>
+noremap <C-Z> :Unite file_mru<CR>
 " " sourcesを「今開いているファイルのディレクトリ」とする
 " noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
 " " ウィンドウを分割して開く
@@ -62,7 +62,7 @@ colorscheme elflord
 
 " 文字コード
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8
 set fileformats=unix,dos,mac
 
 " 画面表示の設定
@@ -78,6 +78,9 @@ set cursorline " カーソルラインをハイライト
 "set list           " 不可視文字を表示
 " 不可視文字の表示記号指定
 "set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
+"カーソル移動速度向上
+set lazyredraw
+set ttyfast
 
 " ファイル処理関連の設定
 
