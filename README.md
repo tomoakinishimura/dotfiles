@@ -14,4 +14,7 @@ cd dotfiles
 sh dotfilesLink.sh
 ```
 
+# settingVim
+
+NeoBundle等vimプラグイン用のbashファイル
 
