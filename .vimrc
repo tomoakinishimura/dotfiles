@@ -11,10 +11,24 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'Yggdroot/indentLine'
 NeoBundleFetch 'Shugo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
+
 " Unite.vimで最近使ったファイルを表示できるようにする
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimproc'
+" 行末の半角スペースを可視化
+NeoBundle 'bronson/vim-trailing-whitespace'
+
+" Ruby, Rails用のプラグイン
+" if endなどの補完
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'kchmck/vim-coffee-script'
+" コメントON/OFFを手軽に実行
+NeoBundle 'tomtom/tcomment_vim'
+" ログファイルを色づけしてくれる
+NeoBundle 'vim-scripts/AnsiEsc.vim'
+" Rails向けのコマンドを提供する
+NeoBundle 'tpope/vim-rails'
 
 call neobundle#end()
 
@@ -53,6 +67,19 @@ noremap <C-Z> :Unite file_mru<CR>
 " au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " """"""""""""""""""""""""""""
 
+" coffee=scriptの設定
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+" インデント設定
+autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
+" オートコンパイル
+"保存と同時にコンパイルする
+autocmd BufWritePost *.coffee silent make! 
+"エラーがあったら別ウィンドウで表示
+autocmd QuickFixCmdPost * nested cwindow | redraw! 
+" Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+
+
 " VimFilerをデフォルトのファイラにする
 let g:vimfiler_as_default_explorer=1
 
@@ -70,6 +97,9 @@ set fileformats=unix,dos,mac
 set number         " 行番号を表示する
 "set cursorline     " カーソル行の背景色を変える
 "set cursorcolumn   " カーソル位置のカラムの背景色を変える
+"highlight Normal ctermbg=black ctermfg=grey
+"highlight StatusLine term=none cterm=none ctermfg=black ctermbg=grey
+"highlight CursorLine term=none cterm=none ctermfg=none ctermbg=darkgray
 set laststatus=2   " ステータス行を常に表示
 set cmdheight=2    " メッセージ表示欄を2行確保
 set showmatch      " 対応する括弧を強調表示
@@ -81,6 +111,16 @@ set cursorline " カーソルラインをハイライト
 "カーソル移動速度向上
 set lazyredraw
 set ttyfast
+
+" 入力処理関連の設定
+
+""""""""""""""""""""""""""""""
+" 自動的に閉じ括弧を入力
+" """"""""""""""""""""""""""""""
+imap { {}<LEFT>
+imap [ []<LEFT>
+imap ( ()<LEFT>
+" """"""""""""""""""""""""""""""
 
 " ファイル処理関連の設定
 
@@ -116,8 +156,6 @@ set clipboard=unnamed,unnamedplus
 "set mouse=a
 " Windows でもパスの区切り文字を / にする
 set shellslash
-" インサートモードから抜けると自動的にIMEをオフにする
-" set iminsert=2
 
 " コマンドラインの設定
 
@@ -125,10 +163,3 @@ set shellslash
 set wildmenu wildmode=list:longest,full
 " コマンドラインの履歴を10000件保存する
 set history=10000
-
-" ビープの設定
-
-"ビープ音すべてを無効にする
-set visualbell t_vb=
-set noerrorbells "エラーメッセージの表示時にビープを鳴らさない
-
