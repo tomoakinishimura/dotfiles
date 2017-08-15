@@ -38,6 +38,14 @@ filetype plugin indent on
 NeoBundleCheck
 
 
+
+" """"""""""""""""""""""""""""""
+" " vim filerの設定
+" """"""""""""""""""""""""""""""
+command FF VimFiler -buffer-name=explorer
+command MM Unite file_mru buffer
+
+
 " http://blog.remora.cx/2010/12/vim-ref-with-unite.html
 " """"""""""""""""""""""""""""""
 " " Unit.vimの設定
