@@ -7,8 +7,7 @@ set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 
-" インストールしたいNeoBundleプラグインを下記に記載
-NeoBundle 'Yggdroot/indentLine'
+" インストールしたいNeoBundleプラグインを下記に記載 NeoBundle 'Yggdroot/indentLine'
 NeoBundleFetch 'Shugo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 
@@ -29,6 +28,15 @@ NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/AnsiEsc.vim'
 " Rails向けのコマンドを提供する
 NeoBundle 'tpope/vim-rails'
+" Angular用のやつ
+NeoBundle 'leafgarland/typescript-vim'
+
+" git系
+NeoBundle 'tpope/vim-fugitive'
+
+" vue
+NeoBundle 'Shougo/context_filetype.vim'
+NeoBundle 'osyo-manga/vim-precious'
 
 call neobundle#end()
 
@@ -56,8 +64,10 @@ autocmd BufWritePost *.coffee silent make!
 "エラーがあったら別ウィンドウで表示
 autocmd QuickFixCmdPost * nested cwindow | redraw! 
 " Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
-nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+" nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
+" vueの設定
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 
 " VimFilerをデフォルトのファイラにする
 let g:vimfiler_as_default_explorer=1
@@ -99,6 +109,14 @@ set ttyfast
 " imap { {}<LEFT>
 " imap [ []<LEFT>
 " imap ( ()<LEFT>
+
+" 閉じタグ設定
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+augroup END
 " """"""""""""""""""""""""""""""
 
 " ファイル処理関連の設定
@@ -134,8 +152,8 @@ set clipboard=unnamed,unnamedplus
 " マウスの入力を受け付ける
 "set mouse=a
 " Windows でもパスの区切り文字を / にする
-set shellslash
-
+" set shellslash
+"
 " コマンドラインの設定
 
 " コマンドラインモードでTABキーによるファイル名補完を有効にする
