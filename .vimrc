@@ -21,8 +21,32 @@ call dein#begin(s:dein_dir)
   call dein#add('Shougo/vimfiler.vim')
   call dein#add('Shougo/neocomplete.vim')
   call dein#add('Shougo/neomru.vim')
-  call dein#add('Shougo/neosnippet')
+
+  " vuejs
+  call dein#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ })
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('w0rp/ale')
+  call dein#add('posva/vim-vue')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+
 call dein#end()
+
+filetype plugin indent on
+
+" for deoplete.nvim
+let g:deoplete#enable_at_startup = 1
+" for LanguageClient-neovim
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls'],
+    \ }
+" not stop completion $ & /
+setlocal iskeyword+=$
+setlocal iskeyword+=-
 
 
 " """"""""""""""""""""""""""""""
