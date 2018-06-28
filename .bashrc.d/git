@@ -1,0 +1,22 @@
+# New Branch Creating
+function branch() {
+  git checkout -b $1;
+  git commit --allow-empty -m "CreatePR";
+  git push origin $1;
+}
+
+# Checkout pull request
+function checkout-pullrequest() {
+  git fetch upstream pull/$1/head:pr/$1
+  git checkout pr/$1
+}
+
+git-prune-branches () {
+    git fetch --prune origin && git branch --merged origin/master | grep -vE ' master$|^\*' | xargs git branch -d
+}
+
+# Completion Git Command
+source /usr/local/etc/bash_completion.d/git-prompt.sh
+source /usr/local/etc/bash_completion.d/git-completion.bash
+GIT_PS1_SHOWDIRTYSTATE=true
+export PS1='\h\[\033[00m\]:\W\[\033[31m\]$(__git_ps1 [%s])\[\033[00m\]\$ '
