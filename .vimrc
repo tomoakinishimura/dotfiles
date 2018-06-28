@@ -1,50 +1,28 @@
-"------------------
-"start neobundle settings
-"------------------
+" """"""""""""""""""""""""""""""
+" " dein setting
+" """"""""""""""""""""""""""""""
+if &compatible
+  set nocompatible
+endif
+" dein.vimのディレクトリ
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+" なければgit clone
+if !isdirectory(s:dein_repo_dir)
+  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+endif
+execute 'set runtimepath^=' . s:dein_repo_dir
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-
-" インストールしたいNeoBundleプラグインを下記に記載 NeoBundle 'Yggdroot/indentLine'
-NeoBundleFetch 'Shugo/neobundle.vim'
-NeoBundle 'Shougo/unite.vim'
-
-" Unite.vimで最近使ったファイルを表示できるようにする
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimproc'
-" 行末の半角スペースを可視化
-NeoBundle 'bronson/vim-trailing-whitespace'
-
-" Ruby, Rails用のプラグイン
-" if endなどの補完
-NeoBundle 'tpope/vim-endwise'
-" NeoBundle 'kchmck/vim-coffee-script'
-" コメントON/OFFを手軽に実行
-NeoBundle 'tomtom/tcomment_vim'
-" ログファイルを色づけしてくれる
-NeoBundle 'vim-scripts/AnsiEsc.vim'
-" Rails向けのコマンドを提供する
-NeoBundle 'tpope/vim-rails'
-" Angular用のやつ
-NeoBundle 'leafgarland/typescript-vim'
-
-" git系
-NeoBundle 'tpope/vim-fugitive'
-
-" vue
-NeoBundle 'Shougo/context_filetype.vim'
-NeoBundle 'osyo-manga/vim-precious'
-
-call neobundle#end()
-
-filetype plugin indent on
-
-" 新しいPluginがあればインストールチェック
-NeoBundleCheck
-
+call dein#begin(s:dein_dir)
+  call dein#add('Shougo/dein.vim')
+  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/vimfiler.vim')
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('Shougo/neosnippet')
+call dein#end()
 
 
 " """"""""""""""""""""""""""""""
@@ -52,19 +30,6 @@ NeoBundleCheck
 " """"""""""""""""""""""""""""""
 command FF VimFiler -buffer-name=explorer
 command MM Unite file_mru buffer
-
-
-" coffee=scriptの設定
-au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-" インデント設定
-autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
-" オートコンパイル
-"保存と同時にコンパイルする
-autocmd BufWritePost *.coffee silent make! 
-"エラーがあったら別ウィンドウで表示
-autocmd QuickFixCmdPost * nested cwindow | redraw! 
-" Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
-" nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
 " vueの設定
 autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
@@ -101,15 +66,6 @@ set cursorline " カーソルラインをハイライト
 set lazyredraw
 set ttyfast
 
-" 入力処理関連の設定
-
-""""""""""""""""""""""""""""""
-" 自動的に閉じ括弧を入力
-" """"""""""""""""""""""""""""""
-" imap { {}<LEFT>
-" imap [ []<LEFT>
-" imap ( ()<LEFT>
-
 " 閉じタグ設定
 augroup MyXML
   autocmd!
@@ -117,10 +73,8 @@ augroup MyXML
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
-" """"""""""""""""""""""""""""""
 
 " ファイル処理関連の設定
-
 set confirm    " 保存されていないファイルがあるときは終了前に保存確認
 set hidden     " 保存されていないファイルがあるときでも別のファイルを開くことが出来る
 set autoread   "外部でファイルに変更がされた場合は読みなおす
@@ -149,12 +103,6 @@ set smartindent   " 改行時に入力された行の末尾に合わせて次の
 
 " OSのクリップボードをレジスタ指定無しで Yank, Put 出来るようにする
 set clipboard=unnamed,unnamedplus
-" マウスの入力を受け付ける
-"set mouse=a
-" Windows でもパスの区切り文字を / にする
-" set shellslash
-"
-" コマンドラインの設定
 
 " コマンドラインモードでTABキーによるファイル名補完を有効にする
 set wildmenu wildmode=list:longest,full
