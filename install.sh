@@ -43,6 +43,8 @@ fi
 
 link_file .bashrc
 link_file .bashrc.d
+link_file .zshrc
+link_file .zshrc.d
 link_file .vimrc
 
 git submodule foreach --recursive git checkout master
