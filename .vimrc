@@ -21,6 +21,13 @@ call dein#begin(s:dein_dir)
   call dein#add('Shougo/vimfiler.vim')
   call dein#add('Shougo/neocomplete.vim')
   call dein#add('Shougo/neomru.vim')
+  call dein#add('tomtom/tcomment_vim') " コメントアウト
+
+  " rails
+  call dein#add('tpope/vim-rails')
+  call dein#add('tpope/vim-endwise')
+  call dein#add('tsaleh/vim-matchit')
+  call dein#add('ecomba/vim-ruby-refactoring')
 
   " vuejs
   call dein#add('autozimu/LanguageClient-neovim', {
@@ -48,6 +55,27 @@ let g:LanguageClient_serverCommands = {
 setlocal iskeyword+=$
 setlocal iskeyword+=-
 
+" """"""""""""""""""""""""""""""
+" " rails pluginの設定
+" """"""""""""""""""""""""""""""
+" メソッドに引数を追加する
+:nnoremap <leader>rap  :RAddParameter<cr>
+" 一行で書かれた条件文(e.g. "hoge if fuga?" のようなもの)を伝統的な複数行の形式に変換する
+:nnoremap <leader>rcpc :RConvertPostConditional<cr>
+" 選択部分を RSpec の "let(:hoge) { fuga }" の形式に切り出す
+:nnoremap <leader>rel  :RExtractLet<cr>
+" 選択部分を定数として切り出す
+:vnoremap <leader>rec  :RExtractConstant<cr>
+" 選択部分を変数として切り出す
+:vnoremap <leader>relv :RExtractLocalVariable<cr>
+" 一時変数を取り除く
+:nnoremap <leader>rit  :RInlineTemp<cr>
+" ローカル変数をリネームする
+:vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+" インスタンス変数をリネームする
+:vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+" 選択部分をメソッドに切り出す
+:vnoremap <leader>rem  :RExtractMethod<cr>
 
 " """"""""""""""""""""""""""""""
 " " vim filerの設定
@@ -55,7 +83,9 @@ setlocal iskeyword+=-
 command FF VimFiler -buffer-name=explorer
 command MM Unite file_mru buffer
 
-" vueの設定
+" """"""""""""""""""""""""""""""
+" " vueの設定
+" """"""""""""""""""""""""""""""
 autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 
 " VimFilerをデフォルトのファイラにする
@@ -126,9 +156,9 @@ set smartindent   " 改行時に入力された行の末尾に合わせて次の
 " 動作環境との統合関連の設定
 
 " OSのクリップボードをレジスタ指定無しで Yank, Put 出来るようにする
-set clipboard=unnamed,unnamedplus
+" set clipboard=unnamed,unnamedplus
 
 " コマンドラインモードでTABキーによるファイル名補完を有効にする
-set wildmenu wildmode=list:longest,full
+" set wildmenu wildmode=list:longest,full
 " コマンドラインの履歴を10000件保存する
-set history=10000
+" set history=10000
