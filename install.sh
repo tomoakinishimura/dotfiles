@@ -41,6 +41,10 @@ if [ ! -d "$HOME/Projects/forks/zsh-git-prompt" ]; then
   git clone https://github.com/olivierverdier/zsh-git-prompt.git $HOME/Projects/forks/zsh-git-prompt
 fi
 
+if [ ! -d "$HOME/powerlevel9k" ]; then
+  git clone https://github.com/bhilburn/powerlevel9k.git $HOME/powerlevel9k
+fi
+
 link_file .bashrc
 link_file .bashrc.d
 link_file .zshrc

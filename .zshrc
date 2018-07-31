@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/jacob/.oh-my-zsh
+# export ZSH=/Users/jacob/.oh-my-zsh
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/boxen/homebrew/bin"
 
 # Start tmux on login
@@ -26,3 +26,11 @@ for i in ~/.zshrc.d/* ; do
         source $i
     fi
 done
+
+# Poserlevel9K configuration
+POWERLEVEL9K_MODE='nerdfont-complete'
+source $HOME/powerlevel9k/powerlevel9k.zsh-theme
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline status)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+DISABLE_UPDATE_PROMPT=true
