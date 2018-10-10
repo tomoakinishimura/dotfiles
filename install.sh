@@ -37,6 +37,10 @@ link_file ()
   fi
 }
 
+if [ ! -e "$HOME/.config/nvim" ]; then
+  ln -snfv ~/.vimrc ~/.config/nvim/init.vim
+fi
+
 if [ ! -d "$HOME/Projects/forks/zsh-git-prompt" ]; then
   git clone https://github.com/olivierverdier/zsh-git-prompt.git $HOME/Projects/forks/zsh-git-prompt
 fi
@@ -45,8 +49,8 @@ if [ ! -d "$HOME/powerlevel9k" ]; then
   git clone https://github.com/bhilburn/powerlevel9k.git $HOME/powerlevel9k
 fi
 
-link_file .bashrc
-link_file .bashrc.d
+# link_file .bashrc
+# link_file .bashrc.d
 link_file .zshrc
 link_file .zshrc.d
 link_file .vimrc

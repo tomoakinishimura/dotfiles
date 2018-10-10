@@ -15,8 +15,6 @@ plugins=(git github git-extras aws docker nyan osx pip python screen sudo tmux)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
-
 autoload -U compinit && compinit
 zmodload -i zsh/complist
 
