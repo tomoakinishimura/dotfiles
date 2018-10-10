@@ -24,21 +24,21 @@ call dein#begin(s:dein_dir)
   call dein#add('tomtom/tcomment_vim') " コメントアウト
 
   " rails
-  call dein#add('tpope/vim-rails')
-  call dein#add('tpope/vim-endwise')
-  call dein#add('tsaleh/vim-matchit')
-  call dein#add('ecomba/vim-ruby-refactoring')
+  " call dein#add('tpope/vim-rails')
+  " call dein#add('tpope/vim-endwise')
+  " call dein#add('tsaleh/vim-matchit')
+  " call dein#add('ecomba/vim-ruby-refactoring')
 
   " vuejs
-  call dein#add('autozimu/LanguageClient-neovim', {
-    \ 'rev': 'next',
-    \ 'build': 'bash install.sh',
-    \ })
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('w0rp/ale')
-  call dein#add('posva/vim-vue')
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
+  " call dein#add('autozimu/LanguageClient-neovim', {
+  "   \ 'rev': 'next',
+  "   \ 'build': 'bash install.sh',
+  "   \ })
+  " call dein#add('Shougo/deoplete.nvim')
+  " call dein#add('w0rp/ale')
+  " call dein#add('posva/vim-vue')
+  " call dein#add('Shougo/neosnippet.vim')
+  " call dein#add('Shougo/neosnippet-snippets')
 
 call dein#end()
 
@@ -59,23 +59,23 @@ setlocal iskeyword+=-
 " " rails pluginの設定
 " """"""""""""""""""""""""""""""
 " メソッドに引数を追加する
-:nnoremap <leader>rap  :RAddParameter<cr>
+" :nnoremap <leader>rap  :RAddParameter<cr>
 " 一行で書かれた条件文(e.g. "hoge if fuga?" のようなもの)を伝統的な複数行の形式に変換する
-:nnoremap <leader>rcpc :RConvertPostConditional<cr>
+" :nnoremap <leader>rcpc :RConvertPostConditional<cr>
 " 選択部分を RSpec の "let(:hoge) { fuga }" の形式に切り出す
-:nnoremap <leader>rel  :RExtractLet<cr>
+" :nnoremap <leader>rel  :RExtractLet<cr>
 " 選択部分を定数として切り出す
-:vnoremap <leader>rec  :RExtractConstant<cr>
+" :vnoremap <leader>rec  :RExtractConstant<cr>
 " 選択部分を変数として切り出す
-:vnoremap <leader>relv :RExtractLocalVariable<cr>
+" :vnoremap <leader>relv :RExtractLocalVariable<cr>
 " 一時変数を取り除く
-:nnoremap <leader>rit  :RInlineTemp<cr>
+" :nnoremap <leader>rit  :RInlineTemp<cr>
 " ローカル変数をリネームする
-:vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+" :vnoremap <leader>rrlv :RRenameLocalVariable<cr>
 " インスタンス変数をリネームする
-:vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+" :vnoremap <leader>rriv :RRenameInstanceVariable<cr>
 " 選択部分をメソッドに切り出す
-:vnoremap <leader>rem  :RExtractMethod<cr>
+" :vnoremap <leader>rem  :RExtractMethod<cr>
 
 " """"""""""""""""""""""""""""""
 " " vim filerの設定
@@ -86,7 +86,7 @@ command MM Unite file_mru buffer
 " """"""""""""""""""""""""""""""
 " " vueの設定
 " """"""""""""""""""""""""""""""
-autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+" autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 
 " VimFilerをデフォルトのファイラにする
 let g:vimfiler_as_default_explorer=1
@@ -152,13 +152,3 @@ set shiftwidth=2  " 自動インデントでずれる幅
 set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set autoindent    " 改行時に前の行のインデントを継続する
 set smartindent   " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
-
-" 動作環境との統合関連の設定
-
-" OSのクリップボードをレジスタ指定無しで Yank, Put 出来るようにする
-" set clipboard=unnamed,unnamedplus
-
-" コマンドラインモードでTABキーによるファイル名補完を有効にする
-" set wildmenu wildmode=list:longest,full
-" コマンドラインの履歴を10000件保存する
-" set history=10000

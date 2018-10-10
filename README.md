@@ -17,3 +17,8 @@ git clone https://github.com/dracula/iterm.git
 # iTerm2 -> Preferences -> Profiles -> Colors -> Color Presets -> Import
 
 ```
+
+# Install dein Plugins
+```shell
+:call dein#install()
+```
