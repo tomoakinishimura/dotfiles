@@ -37,6 +37,12 @@ link_file ()
   fi
 }
 
+# php composer
+if [ ! -e "/usr/local/bin/composer" ]; then
+  curl -sS https://getcomposer.org/installer | php
+  mv composer.phar /usr/local/bin/composer
+fi
+
 if [ ! -e "/usr/local/bin/peco" ]; then
   curl -L -O https://github.com/peco/peco/releases/download/v0.5.3/peco_darwin_amd64.zip > peco_darwin_amd64.zip
   unzip peco_darwin_amd64.zip & rm peco_darwin_amd64.zip
