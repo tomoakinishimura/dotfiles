@@ -1,9 +1,18 @@
 # dotsfiles
 
 settings bash or zsh, and vim settings
+this dotfiles setting base on zsh
+
+## Import Settings
 
 ```shell
 ./install.sh
+```
+
+## Install brew
+
+```shell
+./brew.sh
 ```
 
 # Use iTerm2
@@ -19,6 +28,9 @@ git clone https://github.com/dracula/iterm.git
 ```
 
 # Install dein Plugins
+
+please install dein plugins after install neovim, if you want
+
 ```shell
 :call dein#install()
 ```
