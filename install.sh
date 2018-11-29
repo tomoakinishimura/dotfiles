@@ -66,5 +66,6 @@ fi
 link_file .zshrc
 link_file .zshrc.d
 link_file .vimrc
+link_file .tmux.conf
 
 git submodule foreach --recursive git checkout master

@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/tomoanis/.oh-my-zsh"
@@ -9,7 +10,6 @@ export ZSH="/Users/tomoanis/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="cobalt2"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -112,3 +112,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline status)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 DISABLE_UPDATE_PROMPT=true
+
+# zsh起動時にtumuxを起動
+[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
