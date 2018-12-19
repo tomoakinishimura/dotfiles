@@ -115,3 +115,6 @@ DISABLE_UPDATE_PROMPT=true
 
 # zsh起動時にtumuxを起動
 [[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

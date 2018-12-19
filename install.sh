@@ -45,8 +45,10 @@ fi
 
 if [ ! -e "/usr/local/bin/peco" ]; then
   curl -L -O https://github.com/peco/peco/releases/download/v0.5.3/peco_darwin_amd64.zip > peco_darwin_amd64.zip
-  unzip peco_darwin_amd64.zip & rm peco_darwin_amd64.zip
-  sudo mv peco /usr/local/bin/ & chmod +x /usr/local/bin/peco
+  unzip peco_darwin_amd64.zip
+  rm peco_darwin_amd64.zip
+  sudo mv peco_darwin_amd64/peco /usr/local/bin/
+  sudo chmod +x /usr/local/bin/peco
 fi
 
 if [ ! -e "$HOME/.config/nvim" ]; then
