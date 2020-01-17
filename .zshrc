@@ -1,3 +1,4 @@
+export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -116,5 +117,5 @@ DISABLE_UPDATE_PROMPT=true
 # zsh起動時にtumuxを起動
 [[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+eval "$(rbenv init -)"
+export PATH=$HOME/.nodebrew/current/bin:$PATH

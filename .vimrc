@@ -30,15 +30,19 @@ call dein#begin(s:dein_dir)
   " call dein#add('ecomba/vim-ruby-refactoring')
 
   " vuejs
-  " call dein#add('autozimu/LanguageClient-neovim', {
-  "   \ 'rev': 'next',
-  "   \ 'build': 'bash install.sh',
-  "   \ })
+  call dein#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ })
   " call dein#add('Shougo/deoplete.nvim')
-  " call dein#add('w0rp/ale')
-  " call dein#add('posva/vim-vue')
-  " call dein#add('Shougo/neosnippet.vim')
-  " call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('w0rp/ale')
+  call dein#add('posva/vim-vue')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+
+  " typescript
+  call dein#add('HerringtonDarkholme/yats.vim')
+  call dein#add('mhartington/nvim-typescript', {'build': './install.sh'})
 
 call dein#end()
 
@@ -86,7 +90,7 @@ command MM Unite file_mru buffer
 " """"""""""""""""""""""""""""""
 " " vueの設定
 " """"""""""""""""""""""""""""""
-" autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 
 " VimFilerをデフォルトのファイラにする
 let g:vimfiler_as_default_explorer=1
@@ -147,8 +151,8 @@ set gdefault   " 置換の時 g オプションをデフォルトで有効にす
 " タブ/インデントの設定
 
 set expandtab     " タブ入力を複数の空白入力に置き換える
-set tabstop=2     " 画面上でタブ文字が占める幅
-set shiftwidth=2  " 自動インデントでずれる幅
+set tabstop=4     " 画面上でタブ文字が占める幅
+set shiftwidth=4  " 自動インデントでずれる幅
 set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set autoindent    " 改行時に前の行のインデントを継続する
 set smartindent   " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
