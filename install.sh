@@ -2,6 +2,12 @@
 #
 # Script to install my dotfiles
 
+# brew install
+brew install neovim
+mkdir ~/.config/nvim
+brew install tmux
+brew cleanup
+
 BACKUPDIR="$HOME/dotfiles-backup/"
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )
 
@@ -37,12 +43,7 @@ link_file ()
   fi
 }
 
-# php composer
-if [ ! -e "/usr/local/bin/composer" ]; then
-  curl -sS https://getcomposer.org/installer | php
-  mv composer.phar /usr/local/bin/composer
-fi
-
+# peco
 if [ ! -e "/usr/local/bin/peco" ]; then
   curl -L -O https://github.com/peco/peco/releases/download/v0.5.3/peco_darwin_amd64.zip > peco_darwin_amd64.zip
   unzip peco_darwin_amd64.zip
@@ -51,23 +52,39 @@ if [ ! -e "/usr/local/bin/peco" ]; then
   sudo chmod +x /usr/local/bin/peco
 fi
 
+# nvim
 if [ ! -e "$HOME/.config/nvim" ]; then
   ln -snfv ~/.vimrc ~/.config/nvim/init.vim
 fi
 
-if [ ! -d "$HOME/Projects/forks/zsh-git-prompt" ]; then
-  git clone https://github.com/olivierverdier/zsh-git-prompt.git $HOME/Projects/forks/zsh-git-prompt
-fi
-
+# terminal系
 if [ ! -d "$HOME/powerlevel9k" ]; then
   git clone https://github.com/bhilburn/powerlevel9k.git $HOME/powerlevel9k
 fi
 
-# link_file .bashrc
-# link_file .bashrc.d
-link_file .zshrc
-link_file .zshrc.d
+# prezto
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+# prezto editorをvimに変更
+sed -e "s/nano/vim/g" ~/.zprofile > ~/.zprofile_temp
+mv ~/.zprofile_temp ~/.zprofile
+
+# prezto .zshrcに追記
+cat <<EOL >> ~/.zshrc
+# Source all files in ~/.zshrc.d/
+for i in ~/.zshrc.d/* ; do
+    if [ -r "$i" ]; then
+        source $i
+    fi
+done
+EOL
+
 link_file .vimrc
 link_file .tmux.conf
 
 git submodule foreach --recursive git checkout master
+
