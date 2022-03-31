@@ -1,3 +1,0 @@
-if [ -f /usr/local/bin/fuck  ] || [ -f /opt/boxen/homebrew/bin/fuck ]; then
-  eval $(thefuck --alias)
-fi

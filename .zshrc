@@ -4,7 +4,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/tomoanis/.oh-my-zsh"
+# export ZSH="/Users/tomoanis/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -117,5 +117,4 @@ DISABLE_UPDATE_PROMPT=true
 # zsh起動時にtumuxを起動
 [[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
 
-eval "$(rbenv init -)"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
